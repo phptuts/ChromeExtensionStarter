@@ -83,16 +83,21 @@ chrome.notifications.create(
   ],
 ```
 
-### How Send Message from one script to another
+### How Send Message from background script to content script
 
 ```
-chrome.extension.sendMessage({sel_text: x});
+chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {
+      src: clickedData.srcUrl,
+      type: 'replace_image'
+    });
+});
 ```
 
-### How to recieve a message
+### How to recieve a message from background script to the content script
 
 ```
-chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {   })
+chrome.runtime.onMessage.addListener(function(message, sender, reply) { });
 ```
 
 ## Packing Chrome Extension
