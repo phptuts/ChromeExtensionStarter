@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Project Name",
   "version": "1.0.0",
   "description": "Starter Chrome Extension",
@@ -8,12 +8,12 @@
     "48": "icon48.png",
     "16": "icon16.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "icon16.png",
     "default_popup": "popup.html"
   },
   "options_page": "options.html",
-  "permissions": ["storage", "notifications", "contextMenus", "<all_urls>"],
+  "permissions": ["storage", "notifications", "contextMenus"],
   "content_scripts": [
     {
       "js": ["content.js"],
@@ -22,7 +22,6 @@
     }
   ],
   "background": {
-    "scripts": ["eventPage.js"],
-    "persistent": false
+    "service_worker": "eventPage.js"
   }
 }
